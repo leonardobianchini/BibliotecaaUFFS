@@ -96,7 +96,7 @@ public class actMain extends ActionBarActivity implements View.OnClickListener, 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
-            Log.wtf("actMain", "NAO E NULO DHSUAHDUSDHUDASHUASDHDSAUAHSDUSDHSDU");
+            Log.wtf("actMain", "NAO E NULO DfdHSUAHDUSDHUDASHUASDHDSAUAHSDUSDHSDU");
             adpLivros = repositorioLivro.buscaLivro(this);
             lstLivros.setAdapter(adpLivros);
         }else{
