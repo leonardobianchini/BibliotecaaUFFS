@@ -24,7 +24,6 @@ public class actCadastro extends ActionBarActivity{
 
     private Button btCancela;
     private Button btAdiciona;
-    //private Button btExcluir;
     private EditText edNome;
     private EditText edAutor;
     private EditText edData;
@@ -69,13 +68,6 @@ public class actCadastro extends ActionBarActivity{
             }
         });
 
-        /*btExcluir.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                excluir();
-                finish();
-            }
-        });*/
 
         exibeDataListener listener = new exibeDataListener();
 
@@ -155,16 +147,6 @@ public class actCadastro extends ActionBarActivity{
         }
     }
 
-    private void excluir (){
-        try {
-            repositorioLivro.excluir(livro.getId());
-        } catch (Exception e){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao excluir os dados " + e.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
-        }
-    }
 
     private void exibeData(){
 

@@ -32,14 +32,6 @@ public class RepositorioLivro {
         conn.delete("LIVRO", "_id = ?", new String[]{ String.valueOf(id) });
     }
 
-    public void testeInsere(){
-        for (int i=0; i < 11 ; i++){
-            ContentValues values = new ContentValues();
-            values.put("NOME", "oi voce");
-            conn.insertOrThrow("LIVRO", null, values);
-        }
-    }
-
 
     public ArrayAdapter<Livro> buscaLivro(Context context){
         ArrayAdapter<Livro> adpLivros = new ArrayAdapter<Livro>(context, android.R.layout.simple_list_item_1);

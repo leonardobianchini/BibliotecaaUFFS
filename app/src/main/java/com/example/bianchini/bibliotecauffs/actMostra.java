@@ -49,6 +49,7 @@ public class actMostra extends ActionBarActivity {
         btRenovar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });
@@ -60,9 +61,10 @@ public class actMostra extends ActionBarActivity {
             }
         });
 
-        btDevolver.setOnClickListener(new View.OnClickListener() {
+        btDevolver.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                excluir();
                 finish();
             }
         });
@@ -97,6 +99,17 @@ public class actMostra extends ActionBarActivity {
         DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
         String dt = format.format(livro.getData());
         edtDate.setText(dt);
+    }
+
+    private void excluir (){
+        try {
+            repositorioLivro.excluir(livro.getId());
+        } catch (Exception e){
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Erro ao excluir os dados " + e.getMessage());
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+        }
     }
 
     @Override
