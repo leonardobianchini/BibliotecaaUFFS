@@ -45,9 +45,9 @@ public class actMain extends ActionBarActivity implements View.OnClickListener, 
             conn = dataBase.getWritableDatabase();
 
             repositorioLivro = new RepositorioLivro(conn);
-            //adpLivros = repositorioLivro.buscaLivro(this);
+            adpLivros = repositorioLivro.buscaLivro(this);
 
-            //lstLivros.setAdapter(adpLivros);
+            lstLivros.setAdapter(adpLivros);
 
 
         } catch (Exception ex){
@@ -97,12 +97,11 @@ public class actMain extends ActionBarActivity implements View.OnClickListener, 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
             Log.wtf("actMain", "NAO E NULO DfdHSUAHDUSDHUDASHUASDHDSAUAHSDUSDHSDU");
-            adpLivros = repositorioLivro.buscaLivro(this);
-            lstLivros.setAdapter(adpLivros);
         }else{
             Log.wtf("actMain", "FODEU TUDO");
-
         }
+        adpLivros = repositorioLivro.buscaLivro(this);
+        lstLivros.setAdapter(adpLivros);
     }
 
     @Override

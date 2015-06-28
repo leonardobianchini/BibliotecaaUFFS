@@ -51,6 +51,6 @@ public class Livro implements Serializable {
 
     @Override
     public String toString(){
-        return nome;
+        return nome + " '-' " + id;
     }
 }
