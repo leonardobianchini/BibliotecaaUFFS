@@ -34,7 +34,9 @@
         android:id="@+id/txtName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtName"
+        android:layout_alignEnd="@+id/edtName" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -54,7 +56,9 @@
         android:id="@+id/txtAutorr"
         android:layout_below="@+id/edtName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtAutorr"
+        android:layout_alignEnd="@+id/edtAutorr" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -70,13 +74,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Data"
+        android:text="Data da devolução"
         android:id="@+id/txtDate"
         android:layout_below="@+id/edtAutorr"
-        android:layout_alignRight="@+id/txtName"
-        android:layout_alignEnd="@+id/txtName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtDate"
+        android:layout_alignEnd="@+id/edtDate" />
 
     <EditText
         android:layout_width="wrap_content"

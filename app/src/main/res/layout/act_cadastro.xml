@@ -7,55 +7,25 @@
     tools:context="com.example.bianchini.bibliotecauffs.actCadastro"
     android:id="@+id/ltCadastro">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/lbl_tnome"
-        android:id="@+id/txtNome"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edNome"
-        android:layout_below="@+id/txtNome"
+        android:layout_below="@+id/textNome"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/lbl_tautor"
-        android:id="@+id/txtAutor"
-        android:layout_below="@+id/edNome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/textNome"
+        android:layout_alignEnd="@+id/textNome" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edAutor"
-        android:layout_below="@+id/txtAutor"
+        android:layout_below="@+id/textAutor"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/edNome"
-        android:layout_alignEnd="@+id/edNome" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/lbl_tdata"
-        android:id="@+id/txtData"
-        android:layout_below="@+id/edAutor"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,7 +33,7 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/edData"
-        android:layout_below="@+id/txtData"
+        android:layout_below="@+id/textData"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/edAutor"
@@ -86,5 +56,39 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/edData"
         android:layout_alignEnd="@+id/edData" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nome do Livro"
+        android:id="@+id/textNome"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Autor"
+        android:id="@+id/textAutor"
+        android:layout_below="@+id/edNome"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edNome"
+        android:layout_alignEnd="@+id/edNome" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Data da retirada"
+        android:id="@+id/textData"
+        android:layout_below="@+id/edAutor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

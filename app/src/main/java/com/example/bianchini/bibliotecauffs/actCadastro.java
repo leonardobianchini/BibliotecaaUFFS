@@ -133,7 +133,6 @@ public class actCadastro extends ActionBarActivity{
 
     private void salvar() {
         try {
-            //livro = new Livro();
             livro.setNome(edNome.getText().toString());
             livro.setAutor(edAutor.getText().toString());
             livro.setData(data);
@@ -191,7 +190,7 @@ public class actCadastro extends ActionBarActivity{
             String dt = format.format(data);
 
             edData.setText(dt);
-
+            data.setDate(data.getDate()+10);
             //livro.setData(data);
         }
     }

@@ -17,6 +17,7 @@ import com.example.bianchini.bibliotecauffs.dominio.entidades.Livro;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Calendar;
 
 
 public class actMostra extends ActionBarActivity {
@@ -49,7 +50,7 @@ public class actMostra extends ActionBarActivity {
         btRenovar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                alterar();
                 finish();
             }
         });
@@ -99,6 +100,24 @@ public class actMostra extends ActionBarActivity {
         DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
         String dt = format.format(livro.getData());
         edtDate.setText(dt);
+    }
+
+    private void alterar() {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            livro.setNome(livro.getNome());
+            livro.setAutor(livro.getAutor());
+            data = calendar.getTime();
+            data.setDate(data.getDate()+10);
+            livro.setData(data);
+            repositorioLivro.alterar(livro);
+
+        } catch (Exception ex){
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Erro ao inserir " + ex.getMessage());
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+        }
     }
 
     private void excluir (){

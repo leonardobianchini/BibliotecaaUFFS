@@ -28,6 +28,15 @@ public class RepositorioLivro {
         conn.insertOrThrow("LIVRO", null, values);
     }
 
+    public void alterar(Livro livro){
+        ContentValues values = new ContentValues();
+        values.put("NOME", livro.getNome());
+        values.put("AUTOR", livro.getAutor());
+        values.put("DATA", livro.getData().getTime());
+        long id = livro.getId();
+        conn.update("LIVRO", values, "_id = ?", new String[]{String.valueOf(id)});
+    }
+
     public void excluir (long id){
         conn.delete("LIVRO", "_id = ?", new String[]{ String.valueOf(id) });
     }

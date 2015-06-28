@@ -1,6 +1,7 @@
 package com.example.bianchini.bibliotecauffs.dominio.entidades;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -49,8 +50,14 @@ public class Livro implements Serializable {
         this.data = data;
     }
 
+    private String defineDatata(){
+        DateFormat formato = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        String defineData = formato.format(data);
+        return defineData;
+    }
+
     @Override
     public String toString(){
-        return nome + " - " + id + "\n" + data;
+        return "Nome: "+nome + "\nAutor: "+ autor +  "\nDevolucao: " + defineDatata();
     }
 }

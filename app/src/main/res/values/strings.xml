@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_act_cadastro">Cadastro</string>
+    <string name="title_activity_act_cadastro">Cadastrar Livro</string>
     <string name="title_activity_act_info">Informações da Biblioteca</string>
     <string name="title_activity_act_mostra">Informações do Livro</string>
     <string name="lbl_cancela">Cancelar</string>
