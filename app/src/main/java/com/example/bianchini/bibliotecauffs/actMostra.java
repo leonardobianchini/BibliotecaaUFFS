@@ -1,17 +1,102 @@
 package com.example.bianchini.bibliotecauffs;
 
+import android.app.AlertDialog;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.bianchini.bibliotecauffs.database.DataBase;
+import com.example.bianchini.bibliotecauffs.dominio.RepositorioLivro;
+import com.example.bianchini.bibliotecauffs.dominio.entidades.Livro;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 
 public class actMostra extends ActionBarActivity {
+
+    private Button btVoltar;
+    private Button btRenovar;
+    private Button btDevolver;
+    private EditText edtName;
+    private EditText edtAutorr;
+    private EditText edtDate;
+
+    private DataBase dataBase ;
+    private SQLiteDatabase conn ;
+    private RepositorioLivro repositorioLivro;
+    private Livro livro;
+    private Date data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_mostra);
+
+        edtName = (EditText) findViewById(R.id.edtName);
+        edtAutorr = (EditText) findViewById(R.id.edtAutorr);
+        edtDate = (EditText) findViewById(R.id.edtDate);
+        btVoltar = (Button) findViewById(R.id.btVoltar);
+        btRenovar = (Button) findViewById(R.id.btRenovar);
+        btDevolver = (Button) findViewById(R.id.btDevolver);
+
+        btRenovar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btDevolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Bundle bundle;
+        bundle = getIntent().getExtras();
+
+        if ((bundle != null) && (bundle.containsKey("LIVRO"))) {
+            livro = (Livro)bundle.getSerializable("LIVRO");
+            preencheDados();
+        } else {
+            livro = new Livro();
+        }
+
+        try {
+            dataBase = new DataBase(this);
+            conn = dataBase.getWritableDatabase();
+
+            repositorioLivro = new RepositorioLivro(conn);
+
+        } catch (SQLException ex){
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Erro ao criar o Banco " + ex.getMessage());
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+        }
+    }
+
+    private void preencheDados(){
+        edtName.setText(livro.getNome());
+        edtAutorr.setText(livro.getAutor());
+        DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        String dt = format.format(livro.getData());
+        edtDate.setText(dt);
     }
 
     @Override

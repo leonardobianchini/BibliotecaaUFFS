@@ -24,7 +24,7 @@ public class actCadastro extends ActionBarActivity{
 
     private Button btCancela;
     private Button btAdiciona;
-    private Button btExcluir;
+    //private Button btExcluir;
     private EditText edNome;
     private EditText edAutor;
     private EditText edData;
@@ -45,7 +45,7 @@ public class actCadastro extends ActionBarActivity{
         edData = (EditText) findViewById(R.id.edData);
         btCancela = (Button) findViewById(R.id.btCancela);
         btAdiciona = (Button) findViewById(R.id.btAdiciona);
-        btExcluir = (Button) findViewById(R.id.btExcluir);
+        //btExcluir = (Button) findViewById(R.id.btExcluir);
 
         btCancela.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,13 +69,13 @@ public class actCadastro extends ActionBarActivity{
             }
         });
 
-        btExcluir.setOnClickListener(new View.OnClickListener(){
+        /*btExcluir.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 excluir();
                 finish();
             }
-        });
+        });*/
 
         exibeDataListener listener = new exibeDataListener();
 
@@ -157,7 +157,7 @@ public class actCadastro extends ActionBarActivity{
 
     private void excluir (){
         try {
-            repositorioLivro.excluir((int) livro.getId());
+            repositorioLivro.excluir(livro.getId());
         } catch (Exception e){
             AlertDialog.Builder dlg = new AlertDialog.Builder(this);
             dlg.setMessage("Erro ao excluir os dados " + e.getMessage());

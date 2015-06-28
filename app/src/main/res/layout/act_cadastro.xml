@@ -87,12 +87,4 @@
         android:layout_alignRight="@+id/edData"
         android:layout_alignEnd="@+id/edData" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_excluir"
-        android:id="@+id/btExcluir"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

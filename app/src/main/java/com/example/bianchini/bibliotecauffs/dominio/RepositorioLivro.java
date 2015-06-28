@@ -28,7 +28,7 @@ public class RepositorioLivro {
         conn.insertOrThrow("LIVRO", null, values);
     }
 
-    public void excluir (int id){
+    public void excluir (long id){
         conn.delete("LIVRO", "_id = ?", new String[]{ String.valueOf(id) });
     }
 

@@ -96,9 +96,9 @@ public class actMain extends ActionBarActivity implements View.OnClickListener, 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
-            Log.wtf("actMain", "NAO E NULO DfdHSUAHDUSDHUDASHUASDHDSAUAHSDUSDHSDU");
+            Log.wtf("actMain", "NAO EH NULO");
         }else{
-            Log.wtf("actMain", "FODEU TUDO");
+            Log.wtf("actMain", "RETORNOU NULO");
         }
         adpLivros = repositorioLivro.buscaLivro(this);
         lstLivros.setAdapter(adpLivros);
@@ -108,11 +108,8 @@ public class actMain extends ActionBarActivity implements View.OnClickListener, 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Livro livro = adpLivros.getItem(position);
-
-        Intent it = new Intent(this, actCadastro.class);
-
+        Intent it = new Intent(this, actMostra.class);
         it.putExtra("LIVRO", livro);
-
-        startActivityForResult(it, 0);
+        startActivityForResult(it, 1);
     }
 }
