@@ -1,12 +1,16 @@
 package com.example.bianchini.bibliotecauffs.dominio.entidades;
 
+/**
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que contem o Livro em si, com seus getters e setters
+ *	*/
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-/**
- * Created by Bianchini on 13/06/2015.
- */
 public class Livro implements Serializable {
 
     private long id;
@@ -14,6 +18,7 @@ public class Livro implements Serializable {
     private String autor;
     private Date data;
 
+    //define o id=0 para saber se o livro eh nulo
     public Livro(){
         id = 0;
     }
@@ -50,6 +55,7 @@ public class Livro implements Serializable {
         this.data = data;
     }
 
+    //metodo que formata a data para dd/mm/yyyy para ser retornado
     private String defineDatata(){
         DateFormat formato = DateFormat.getDateInstance(DateFormat.MEDIUM);
         String defineData = formato.format(data);

@@ -1,5 +1,12 @@
 package com.example.bianchini.bibliotecauffs.dominio;
 
+/**
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que contem o repositorio do livro, que implementa os metodos de controle do banco
+ *	*/
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,9 +17,7 @@ import com.example.bianchini.bibliotecauffs.dominio.entidades.Livro;
 
 import java.util.Date;
 
-/**
- * Created by Bianchini on 12/06/2015.
- */
+
 public class RepositorioLivro {
 
     private SQLiteDatabase conn;
@@ -20,19 +25,21 @@ public class RepositorioLivro {
         this.conn = conn;
     }
 
-    public void inserir(Livro livro){
-        ContentValues values = new ContentValues();
+    public void preencheValues(Livro livro, ContentValues values){
         values.put("NOME", livro.getNome());
         values.put("AUTOR", livro.getAutor());
         values.put("DATA", livro.getData().getTime());
+    }
+
+    public void inserir(Livro livro){
+        ContentValues values = new ContentValues();
+        preencheValues(livro, values);
         conn.insertOrThrow("LIVRO", null, values);
     }
 
     public void alterar(Livro livro){
         ContentValues values = new ContentValues();
-        values.put("NOME", livro.getNome());
-        values.put("AUTOR", livro.getAutor());
-        values.put("DATA", livro.getData().getTime());
+        preencheValues(livro, values);
         long id = livro.getId();
         conn.update("LIVRO", values, "_id = ?", new String[]{String.valueOf(id)});
     }

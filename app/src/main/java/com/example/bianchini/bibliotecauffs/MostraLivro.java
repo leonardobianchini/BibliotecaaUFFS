@@ -1,6 +1,12 @@
 package com.example.bianchini.bibliotecauffs;
 
-import android.app.AlertDialog;
+/**
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que contem a tela de visualizacao das informacoes do livro e permite devolver/renovar
+ *	*/
+
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.bianchini.bibliotecauffs.app.MessageBox;
 import com.example.bianchini.bibliotecauffs.database.DataBase;
 import com.example.bianchini.bibliotecauffs.dominio.RepositorioLivro;
 import com.example.bianchini.bibliotecauffs.dominio.entidades.Livro;
@@ -20,7 +27,7 @@ import java.util.Date;
 import java.util.Calendar;
 
 
-public class actMostra extends ActionBarActivity {
+public class MostraLivro extends ActionBarActivity {
 
     private Button btVoltar;
     private Button btRenovar;
@@ -47,6 +54,7 @@ public class actMostra extends ActionBarActivity {
         btRenovar = (Button) findViewById(R.id.btRenovar);
         btDevolver = (Button) findViewById(R.id.btDevolver);
 
+        //definidas acoes ao clicar em cada botao
         btRenovar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +78,7 @@ public class actMostra extends ActionBarActivity {
             }
         });
 
+        //recebimento dos parametros passados no item do listview
         Bundle bundle;
         bundle = getIntent().getExtras();
 
@@ -83,17 +92,14 @@ public class actMostra extends ActionBarActivity {
         try {
             dataBase = new DataBase(this);
             conn = dataBase.getWritableDatabase();
-
             repositorioLivro = new RepositorioLivro(conn);
 
         } catch (SQLException ex){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao criar o Banco " + ex.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
+            MessageBox.show(this, "Erro ao criar o Banco " + ex.getMessage());
         }
     }
 
+    //preenche os campos com os dados passados pelo parametro
     private void preencheDados(){
         edtName.setText(livro.getNome());
         edtAutorr.setText(livro.getAutor());
@@ -102,6 +108,7 @@ public class actMostra extends ActionBarActivity {
         edtDate.setText(dt);
     }
 
+    //metodo que altera a data de devolucao, definida 10 dias a partir do dia que foi renovado
     private void alterar() {
         try {
             Calendar calendar = Calendar.getInstance();
@@ -111,23 +118,17 @@ public class actMostra extends ActionBarActivity {
             data.setDate(data.getDate()+10);
             livro.setData(data);
             repositorioLivro.alterar(livro);
-
         } catch (Exception ex){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao inserir " + ex.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
+            MessageBox.show(this, "Erro ao inserir " + ex.getMessage());
         }
     }
 
+    //metodo chamado ao devolver um livro
     private void excluir (){
         try {
             repositorioLivro.excluir(livro.getId());
         } catch (Exception e){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao excluir os dados " + e.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
+            MessageBox.show(this, "Erro ao excluir os dados " + e.getMessage());
         }
     }
 

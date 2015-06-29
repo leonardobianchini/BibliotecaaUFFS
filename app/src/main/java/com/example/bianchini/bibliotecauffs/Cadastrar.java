@@ -1,6 +1,12 @@
 package com.example.bianchini.bibliotecauffs;
 
-import android.app.AlertDialog;
+/**
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que contem a tela de cadastro do livro
+ *	*/
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.SQLException;
@@ -11,6 +17,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
+import com.example.bianchini.bibliotecauffs.app.MessageBox;
 import com.example.bianchini.bibliotecauffs.database.DataBase;
 import com.example.bianchini.bibliotecauffs.dominio.RepositorioLivro;
 import com.example.bianchini.bibliotecauffs.dominio.entidades.Livro;
@@ -20,7 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class actCadastro extends ActionBarActivity{
+public class Cadastrar extends ActionBarActivity{
 
     private Button btCancela;
     private Button btAdiciona;
@@ -29,7 +36,7 @@ public class actCadastro extends ActionBarActivity{
     private EditText edData;
 
     private DataBase dataBase ;
-    private SQLiteDatabase conn ;
+    private SQLiteDatabase conn;
     private RepositorioLivro repositorioLivro;
     private Livro livro;
     private Date data;
@@ -44,8 +51,8 @@ public class actCadastro extends ActionBarActivity{
         edData = (EditText) findViewById(R.id.edData);
         btCancela = (Button) findViewById(R.id.btCancela);
         btAdiciona = (Button) findViewById(R.id.btAdiciona);
-        //btExcluir = (Button) findViewById(R.id.btExcluir);
 
+        //definidas a acoes dos botoes
         btCancela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,15 +75,15 @@ public class actCadastro extends ActionBarActivity{
             }
         });
 
-
+        //acoes para exibicao da data
         exibeDataListener listener = new exibeDataListener();
-
         edData.setOnClickListener(listener);
         edData.setOnFocusChangeListener(listener);
 
         Bundle bundle;
         bundle = getIntent().getExtras();
 
+        //verificada a passagem de parametros para criar ou preencher livro
         if ((bundle != null) && (bundle.containsKey("LIVRO"))) {
             livro = (Livro)bundle.getSerializable("LIVRO");
             preencheDados();
@@ -87,14 +94,9 @@ public class actCadastro extends ActionBarActivity{
         try {
             dataBase = new DataBase(this);
             conn = dataBase.getWritableDatabase();
-
             repositorioLivro = new RepositorioLivro(conn);
-
         } catch (SQLException ex){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao criar o Banco " + ex.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
+            MessageBox.show(this, "Erro ao criar o Banco " + ex.getMessage());
         }
     }
 
@@ -120,46 +122,38 @@ public class actCadastro extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
 
-
+    //metodo que preenche os EditText com o livro que foi passado no parametro
     private void preencheDados(){
         edNome.setText(livro.getNome());
         edAutor.setText(livro.getAutor());
-
         DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
         String dt = format.format(livro.getData());
         edData.setText(dt);
     }
 
-
+    //metodo acionado ao clicar em adicionar
     private void salvar() {
         try {
             livro.setNome(edNome.getText().toString());
             livro.setAutor(edAutor.getText().toString());
             livro.setData(data);
             repositorioLivro.inserir(livro);
-
         } catch (Exception ex){
-            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-            dlg.setMessage("Erro ao inserir " + ex.getMessage());
-            dlg.setNeutralButton("OK",null);
-            dlg.show();
+            MessageBox.show(this, "Erro ao inserir " + ex.getMessage());
         }
     }
 
-
+    //metodo que chama a exibibicao da data
     private void exibeData(){
-
         Calendar calendar = Calendar.getInstance();
-
         int ano = calendar.get(Calendar.YEAR);
         int mes = calendar.get(Calendar.MONTH);
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
-
         DatePickerDialog dlg = new DatePickerDialog(this, new selecionaDataListener() , ano, mes, dia);
         dlg.show();
-
     }
 
+    //implementacao do Dialog da data ao focar ou clicar no campo data
     private class exibeDataListener implements View.OnClickListener, View.OnFocusChangeListener {
 
         @Override
@@ -175,23 +169,18 @@ public class actCadastro extends ActionBarActivity{
         }
     }
 
+    //define o formato de data e ja soma os dias para a devolucao do livro
     private class selecionaDataListener implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
             Calendar calendar = Calendar.getInstance();
             calendar.set(year, monthOfYear, dayOfMonth);
-
             data = calendar.getTime();
-
             DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM);
-
             String dt = format.format(data);
-
             edData.setText(dt);
-            data.setDate(data.getDate()+10);
-            //livro.setData(data);
+            data.setDate(data.getDate() + 10);
         }
     }
 }

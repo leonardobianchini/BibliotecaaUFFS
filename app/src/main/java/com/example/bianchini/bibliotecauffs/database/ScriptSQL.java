@@ -1,11 +1,15 @@
 package com.example.bianchini.bibliotecauffs.database;
 
 /**
- * Created by Bianchini on 12/06/2015.
- */
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que define a tabela que sera usada no array de livros a serem guardados no banco
+ *	*/
 
 public class ScriptSQL {
 
+    //metodo que cria a tabela para ser usada no banco
     public static String getCriateLivro(){
         StringBuilder sqlBuilder = new StringBuilder();
 

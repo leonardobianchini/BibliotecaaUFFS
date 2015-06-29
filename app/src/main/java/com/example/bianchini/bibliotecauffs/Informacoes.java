@@ -1,12 +1,19 @@
 package com.example.bianchini.bibliotecauffs;
 
+/**
+ *	Academicos: Joao Carlos Becker e Leonardo Bianchini
+ *	Emails: joaoc.becker@hotmail.com e leonardobianchini7@gmail.com
+ *
+ *  Classe que contem a tela que da informacoes ao usuario sobre o aplicativo e funcionamento
+ *	*/
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class actInfo extends ActionBarActivity {
+public class Informacoes extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

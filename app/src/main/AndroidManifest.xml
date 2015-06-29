@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".actMain"
+            android:name=".Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,15 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".actCadastro"
+            android:name=".Cadastrar"
             android:label="@string/title_activity_act_cadastro" >
         </activity>
         <activity
-            android:name=".actInfo"
+            android:name=".Informacoes"
             android:label="@string/title_activity_act_info" >
         </activity>
         <activity
-            android:name=".actMostra"
+            android:name=".MostraLivro"
             android:label="@string/title_activity_act_mostra" >
         </activity>
     </application>
