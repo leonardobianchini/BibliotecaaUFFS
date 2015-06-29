@@ -18,4 +18,5 @@
     <string name="lbl_devolver">Devolver</string>
     <string name="lbl_renovar">Renovar</string>
     <string name="lbl_voltar">Voltar</string>
+    <string name="lbl_buttonvoltar">Voltar</string>
 </resources>

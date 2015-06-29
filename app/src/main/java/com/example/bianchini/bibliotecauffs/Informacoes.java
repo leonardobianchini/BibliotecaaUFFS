@@ -11,14 +11,28 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class Informacoes extends ActionBarActivity {
+
+    private Button butVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_info);
+
+        butVoltar = (Button) findViewById(R.id.buttonVoltar);
+
+        butVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -42,4 +56,6 @@ public class Informacoes extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
